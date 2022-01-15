@@ -13,7 +13,7 @@ namespace IotCore.Common.Filter
         /// <summary>
         /// 初始化一个<see cref="SortCondition"/>类型的新实例
         /// </summary>
-        public SortCondition() : this(null)
+        public SortCondition() : this(string.Empty)
         { }
 
         /// <summary>

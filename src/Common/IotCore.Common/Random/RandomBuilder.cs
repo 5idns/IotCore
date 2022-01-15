@@ -68,7 +68,7 @@ namespace IotCore.Common.Random
         {
             if (list == null || list.Count <= count || count <= 0)
             {
-                return list;
+                return new List<RandomObject<TV>>();
             }
 
             //计算权重综合
@@ -102,8 +102,24 @@ namespace IotCore.Common.Random
 
     public class RandomObject<T>
     {
+        public RandomObject(T item):this(0,item)
+        {
+        }
+
+        public RandomObject(int weight,T item)
+        {
+            Weight = weight;
+            Item = item;
+        }
+
+        /// <summary>
+        /// 权重
+        /// </summary>
         public int Weight { set; get; }
 
+        /// <summary>
+        /// 对象
+        /// </summary>
         public T Item { get; set; }
     }
 }

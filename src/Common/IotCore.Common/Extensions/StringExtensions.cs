@@ -218,7 +218,7 @@ namespace IotCore.Common.Extensions
         {
             if (value == null)
             {
-                return null;
+                return string.Empty;
             }
             return Regex.Match(value, pattern).Value;
         }
@@ -357,7 +357,7 @@ namespace IotCore.Common.Extensions
             }
             string inner = containsEmpty ? "\\s\\S" : "\\S";
             string result = source.Match($"(?<={startString})([{inner}]+?)(?={endString})");
-            return result.IsMissing() ? null : result;
+            return result.IsMissing() ? string.Empty : result;
         }
 
         /// <summary>
@@ -494,7 +494,7 @@ namespace IotCore.Common.Extensions
         /// 指示指定的字符串是 null 或者 System.String.Empty 字符串
         /// </summary>
         [DebuggerStepThrough]
-        public static string IsNullOrEmpty(this string value,string defaultValue)
+        public static string IsNullOrEmpty(this string value, string defaultValue)
         {
             if (string.IsNullOrEmpty(value))
             {
@@ -783,7 +783,15 @@ namespace IotCore.Common.Extensions
         /// <summary>
         /// 将字符串转换为<see cref="byte"/>[]数组，默认编码为<see cref="Encoding.UTF8"/>
         /// </summary>
-        public static byte[] ToBytes(this string value, Encoding encoding = null)
+        public static byte[] ToBytes(this string value)
+        {
+            return ToBytes(value, Encoding.UTF8);
+        }
+
+        /// <summary>
+        /// 将字符串转换为<see cref="byte"/>[]数组，默认编码为<see cref="Encoding.UTF8"/>
+        /// </summary>
+        public static byte[] ToBytes(this string value, Encoding encoding)
         {
             if (encoding == null)
             {
@@ -795,7 +803,15 @@ namespace IotCore.Common.Extensions
         /// <summary>
         /// 将<see cref="byte"/>[]数组转换为字符串，默认编码为<see cref="Encoding.UTF8"/>
         /// </summary>
-        public static string ToString2(this byte[] bytes, Encoding encoding = null)
+        public static string ToString2(this byte[] bytes)
+        {
+            return ToString2(bytes, Encoding.UTF8);
+        }
+
+        /// <summary>
+        /// 将<see cref="byte"/>[]数组转换为字符串，默认编码为<see cref="Encoding.UTF8"/>
+        /// </summary>
+        public static string ToString2(this byte[] bytes, Encoding encoding)
         {
             if (encoding == null)
             {
@@ -818,7 +834,18 @@ namespace IotCore.Common.Extensions
         /// <param name="source">正常的字符串</param>
         /// <param name="encoding">编码</param>
         /// <returns>Base64字符串</returns>
-        public static string ToBase64String(this string source, Encoding encoding = null)
+        public static string ToBase64String(this string source)
+        {
+            return ToBase64String(source, Encoding.UTF8);
+        }
+
+        /// <summary>
+        /// 将字符串转换为Base64字符串，默认编码为<see cref="Encoding.UTF8"/>
+        /// </summary>
+        /// <param name="source">正常的字符串</param>
+        /// <param name="encoding">编码</param>
+        /// <returns>Base64字符串</returns>
+        public static string ToBase64String(this string source, Encoding encoding)
         {
             if (encoding == null)
             {
@@ -833,7 +860,18 @@ namespace IotCore.Common.Extensions
         /// <param name="base64String">Base64字符串</param>
         /// <param name="encoding">编码</param>
         /// <returns>正常字符串</returns>
-        public static string FromBase64String(this string base64String, Encoding encoding = null)
+        public static string FromBase64String(this string base64String)
+        {
+            return FromBase64String(base64String, Encoding.UTF8);
+        }
+
+        /// <summary>
+        /// 将Base64字符串转换为正常字符串，默认编码为<see cref="Encoding.UTF8"/>
+        /// </summary>
+        /// <param name="base64String">Base64字符串</param>
+        /// <param name="encoding">编码</param>
+        /// <returns>正常字符串</returns>
+        public static string FromBase64String(this string base64String, Encoding encoding)
         {
             if (encoding == null)
             {
@@ -883,10 +921,18 @@ namespace IotCore.Common.Extensions
             return HttpUtility.HtmlEncode(source);
         }
         */
+
         /// <summary>
         /// 将字符串转换为十六进制字符串，默认编码为<see cref="Encoding.UTF8"/>
         /// </summary>
-        public static string ToHexString(this string source, Encoding encoding = null)
+        public static string ToHexString(this string source)
+        {
+            return ToHexString(source, Encoding.UTF8);
+        }
+        /// <summary>
+        /// 将字符串转换为十六进制字符串，默认编码为<see cref="Encoding.UTF8"/>
+        /// </summary>
+        public static string ToHexString(this string source, Encoding encoding)
         {
             if (encoding == null)
             {
@@ -899,7 +945,15 @@ namespace IotCore.Common.Extensions
         /// <summary>
         /// 将十六进制字符串转换为常规字符串，默认编码为<see cref="Encoding.UTF8"/>
         /// </summary>
-        public static string FromHexString(this string hexString, Encoding encoding = null)
+        public static string FromHexString(this string hexString)
+        {
+            return FromHexString(hexString, Encoding.UTF8);
+        }
+
+        /// <summary>
+        /// 将十六进制字符串转换为常规字符串，默认编码为<see cref="Encoding.UTF8"/>
+        /// </summary>
+        public static string FromHexString(this string hexString, Encoding encoding)
         {
             if (encoding == null)
             {
@@ -943,7 +997,7 @@ namespace IotCore.Common.Extensions
         public static string ToUnicodeString(this string source)
         {
             Regex regex = new Regex(@"[^\u0000-\u00ff]");
-            return regex.Replace(source, m => $@"\u{(short) m.Value[0]:x4}");
+            return regex.Replace(source, m => $@"\u{(short)m.Value[0]:x4}");
         }
 
         /// <summary>
@@ -969,7 +1023,18 @@ namespace IotCore.Common.Extensions
         /// <param name="str">待转换的字符串</param>
         /// <param name="splitStr">分隔符字符</param>
         /// <returns></returns>
-        public static string UpperToLowerAndSplit(this string str, string splitStr = "-")
+        public static string UpperToLowerAndSplit(this string str)
+        {
+            return UpperToLowerAndSplit(str, "-");
+        }
+
+        /// <summary>
+        /// 将驼峰字符串按单词拆分并转换成小写，再以特定字符串分隔
+        /// </summary>
+        /// <param name="str">待转换的字符串</param>
+        /// <param name="splitStr">分隔符字符</param>
+        /// <returns></returns>
+        public static string UpperToLowerAndSplit(this string str, string splitStr)
         {
             if (string.IsNullOrEmpty(str))
             {
@@ -1039,9 +1104,21 @@ namespace IotCore.Common.Extensions
         /// <param name="source">源字符串</param>
         /// <param name="target">目标字符串</param>
         /// <param name="similarity">输出相似度</param>
+        /// <returns>编辑距离</returns>
+        public static int LevenshteinDistance(this string source, string target, out double similarity)
+        {
+            return LevenshteinDistance(source, target, out similarity, false);
+        }
+
+        /// <summary>
+        /// 计算当前字符串与指定字符串的编辑距离(相似度)
+        /// </summary>
+        /// <param name="source">源字符串</param>
+        /// <param name="target">目标字符串</param>
+        /// <param name="similarity">输出相似度</param>
         /// <param name="ignoreCase">是否忽略大小写</param>
         /// <returns>编辑距离</returns>
-        public static int LevenshteinDistance(this string source, string target, out double similarity, bool ignoreCase = false)
+        public static int LevenshteinDistance(this string source, string target, out double similarity, bool ignoreCase)
         {
             if (string.IsNullOrEmpty(source))
             {
@@ -1108,9 +1185,21 @@ namespace IotCore.Common.Extensions
         /// </summary>
         /// <param name="source">源字符串</param>
         /// <param name="target">目标字符串</param>
+        /// <returns>字符串相似度</returns>
+        public static double GetSimilarityWith(this string source, string target)
+        {
+            return GetSimilarityWith(source, target, false);
+        }
+
+        /// <summary>
+        /// 计算两个字符串的相似度，应用公式：相似度=kq*q/(kq*q+kr*r+ks*s)(kq>0,kr>=0,ka>=0)
+        /// 其中，q是字符串1和字符串2中都存在的单词的总数，s是字符串1中存在，字符串2中不存在的单词总数，r是字符串2中存在，字符串1中不存在的单词总数. kq,kr和ka分别是q,r,s的权重，根据实际的计算情况，我们设kq=2，kr=ks=1.
+        /// </summary>
+        /// <param name="source">源字符串</param>
+        /// <param name="target">目标字符串</param>
         /// <param name="ignoreCase">是否忽略大小写</param>
         /// <returns>字符串相似度</returns>
-        public static double GetSimilarityWith(this string source, string target, bool ignoreCase = false)
+        public static double GetSimilarityWith(this string source, string target, bool ignoreCase)
         {
             if (string.IsNullOrEmpty(source) && string.IsNullOrEmpty(target))
             {

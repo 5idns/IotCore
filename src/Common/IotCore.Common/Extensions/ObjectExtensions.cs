@@ -26,7 +26,7 @@ namespace IotCore.Common.Extensions
         {
             if (value == null)
             {
-                return null;
+                return default;
             }
             if (conversionType.IsNullableType())
             {

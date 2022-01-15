@@ -103,7 +103,7 @@ namespace IotCore.Common.Reflection
             DisplayAttribute display = member.GetAttribute<DisplayAttribute>(inherit);
             if (display != null)
             {
-                return display.Name;
+                return display.Name ?? string.Empty;
             }
             return member.Name;
         }
@@ -130,7 +130,12 @@ namespace IotCore.Common.Reflection
         public static T GetAttribute<T>(this MemberInfo memberInfo, bool inherit = true) where T : Attribute
         {
             var attributes = memberInfo.GetCustomAttributes(typeof(T), inherit);
-            return attributes.FirstOrDefault() as T;
+            var firstAttribute = attributes.FirstOrDefault();
+            if (firstAttribute is T attribute)
+            {
+                return attribute;
+            }
+            return default;
         }
 
         /// <summary>

@@ -62,9 +62,8 @@ namespace IotCore.Common.Entities
 
         }
 
-        public TableData(TEntity[] data, int start = 0, int length = 20, long count = 0) : base(data, start, length, count)
+        public TableData(TEntity[] data, int start = 0, int length = 20, long count = 0) : this(data, null, start, length, count)
         {
-            Summary = default;
         }
 
         public TableData(TEntity[] data, TSummary summary, int start = 0, int length = 20, long count = 0) : base(data,

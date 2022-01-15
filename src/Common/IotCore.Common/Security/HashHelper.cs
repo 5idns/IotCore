@@ -12,7 +12,15 @@ namespace IotCore.Common.Security
         /// <summary>
         /// 获取字符串的MD5哈希值，默认编码为<see cref="Encoding.UTF8"/>
         /// </summary>
-        public static string GetMd5(string value, Encoding encoding = null)
+        public static string GetMd5(string value)
+        {
+            return GetMd5(value, Encoding.UTF8);
+        }
+
+        /// <summary>
+        /// 获取字符串的MD5哈希值，默认编码为<see cref="Encoding.UTF8"/>
+        /// </summary>
+        public static string GetMd5(string value, Encoding encoding)
         {
             value.CheckNotNull("value");
             if (encoding == null)
@@ -42,7 +50,15 @@ namespace IotCore.Common.Security
         /// <summary>
         /// 获取字符串的SHA1哈希值，默认编码为<see cref="Encoding.UTF8"/>
         /// </summary>
-        public static string GetSha1(string value, Encoding encoding = null)
+        public static string GetSha1(string value)
+        {
+            return GetSha1(value, Encoding.UTF8);
+        }
+
+        /// <summary>
+        /// 获取字符串的SHA1哈希值，默认编码为<see cref="Encoding.UTF8"/>
+        /// </summary>
+        public static string GetSha1(string value, Encoding encoding)
         {
             value.CheckNotNullOrEmpty("value");
 
@@ -63,7 +79,15 @@ namespace IotCore.Common.Security
         /// <summary>
         /// 获取字符串的Sha256哈希值，默认编码为<see cref="Encoding.UTF8"/>
         /// </summary>
-        public static string GetSha256(string value, Encoding encoding = null)
+        public static string GetSha256(string value)
+        {
+            return GetSha256(value, Encoding.UTF8);
+        }
+
+        /// <summary>
+        /// 获取字符串的Sha256哈希值，默认编码为<see cref="Encoding.UTF8"/>
+        /// </summary>
+        public static string GetSha256(string value, Encoding encoding)
         {
             value.CheckNotNullOrEmpty("value");
 
@@ -84,7 +108,15 @@ namespace IotCore.Common.Security
         /// <summary>
         /// 获取字符串的Sha512哈希值，默认编码为<see cref="Encoding.UTF8"/>
         /// </summary>
-        public static string GetSha512(string value, Encoding encoding = null)
+        public static string GetSha512(string value)
+        {
+            return GetSha512(value, Encoding.UTF8);
+        }
+
+        /// <summary>
+        /// 获取字符串的Sha512哈希值，默认编码为<see cref="Encoding.UTF8"/>
+        /// </summary>
+        public static string GetSha512(string value, Encoding encoding)
         {
             value.CheckNotNullOrEmpty("value");
 

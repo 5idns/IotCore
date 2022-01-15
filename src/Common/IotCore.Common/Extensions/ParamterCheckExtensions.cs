@@ -177,9 +177,9 @@ namespace IotCore.Common.Extensions
         /// <param name="paramName">参数名称。</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="DirectoryNotFoundException"></exception>
-        public static void CheckDirectoryExists(this string directory, string paramName = null)
+        public static void CheckDirectoryExists(this string directory, string paramName = "directory")
         {
-            CheckNotNull(directory, paramName);
+            directory.CheckNotNull(paramName);
             Require<DirectoryNotFoundException>(Directory.Exists(directory), $"指定的目录路径“{directory}”不存在。");
         }
 
@@ -190,9 +190,9 @@ namespace IotCore.Common.Extensions
         /// <param name="paramName">参数名称。</param>
         /// <exception cref="ArgumentNullException">当文件路径为null时</exception>
         /// <exception cref="FileNotFoundException">当文件路径不存在时</exception>
-        public static void CheckFileExists(this string filename, string paramName = null)
+        public static void CheckFileExists(this string filename, string paramName = "filename")
         {
-            CheckNotNull(filename, paramName);
+            filename.CheckNotNull(paramName);
             Require<FileNotFoundException>(File.Exists(filename), $"指定的文件路径“{filename}”不存在。");
         }
     }

@@ -17,7 +17,7 @@ namespace IotCore.Common.Serialization
         {
             if (obj == null)
             {
-                return null;
+                return new byte[0];
             }
             var binaryFormatter = new BinaryFormatter();
             using (var memoryStream = new MemoryStream())
@@ -41,7 +41,11 @@ namespace IotCore.Common.Serialization
             var binaryFormatter = new BinaryFormatter();
             using (var memoryStream = new MemoryStream(byteArray))
             {
-                return binaryFormatter.Deserialize(memoryStream) as T;
+                if(binaryFormatter.Deserialize(memoryStream) is T obj)
+                {
+                    return obj;
+                }
+                return default;
             }
         }
     }

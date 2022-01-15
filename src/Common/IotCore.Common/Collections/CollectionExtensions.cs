@@ -37,7 +37,20 @@ namespace IotCore.Common.Collections
         /// <summary>
         /// 如果不存在，添加项
         /// </summary>
-        public static void AddIfNotExist<T>(this ICollection<T> collection, T value, Func<T, bool> existFunc = null)
+        public static void AddIfNotExist<T>(this ICollection<T> collection, T value)
+        {
+            collection.CheckNotNull(nameof(collection));
+            bool exists = collection.Contains(value);
+            if (!exists)
+            {
+                collection.Add(value);
+            }
+        }
+
+        /// <summary>
+        /// 如果不存在，添加项
+        /// </summary>
+        public static void AddIfNotExist<T>(this ICollection<T> collection, T value, Func<T, bool> existFunc)
         {
             collection.CheckNotNull(nameof(collection));
             bool exists = existFunc == null ? collection.Contains(value) : existFunc(value);
