@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IotCore.Common\IotCore.Common.csproj" />
+    <ProjectReference Include="..\IotCore.Enumerations\IotCore.Enumerations.csproj" />
+  </ItemGroup>
+
+</Project>

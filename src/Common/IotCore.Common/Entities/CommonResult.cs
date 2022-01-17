@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using IotCore.Common.Enumeration;
+using IotCore.Enumerations;
 
 namespace IotCore.Common.Entities
 {

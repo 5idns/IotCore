@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace IotCore.Common.Enumeration
+namespace IotCore.Enumerations
 {
     /// <summary>
     /// <para>状态码</para>
